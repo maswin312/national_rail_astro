@@ -180,3 +180,13 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,astro
 .DS_store
+airflow/.env
+airbyte/
+logs/
+terraform.*
+terraform/.terraform/
+*.hcl
+terraform/final
+.DS_Store
+venv
+.vscode/
