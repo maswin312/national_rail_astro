@@ -1,8 +1,8 @@
 version : 1
 
 sources:
-  - name: maven
-    schema: maven_train_data
+  - name: national_rail
+    schema: national_rail_data
     tables:
-    - name : raw_maven_data
+    - name : raw_national_rail_data
       identifier : railway

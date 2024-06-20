@@ -1,0 +1,22 @@
+version: "3.1"
+services:
+  scheduler:
+    volumes:
+      - /workspace/national_rail_astro/dbt/national_rail:/usr/local/airflow/dbt:rw
+      - /tmp/airbyte_local
+    # networks:
+    #   - airbyte_public
+
+  webserver:
+    volumes:
+      - /workspace/national_rail_astro/dbt/national_rail:/usr/local/airflow/dbt:rw
+      - /tmp/airbyte_local
+    # networks:
+    #   - airbyte_public
+
+  triggerer:
+    volumes:
+      - /workspace/national_rail_astro/dbt/national_rail:/usr/local/airflow/dbt:rw
+      - /tmp/airbyte_local:/tmp/airbyte_local
+    # networks:
+    #   - airbyte_public

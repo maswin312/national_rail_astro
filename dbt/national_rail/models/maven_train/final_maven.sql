@@ -17,7 +17,7 @@
 
 
 with
-    final_maven as (select * from {{ source("maven", "raw_maven_data") }}),
+    final_maven as (select * from {{ source("national_rail", "raw_national_rail_data") }}),
 
     base as (
         select
