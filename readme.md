@@ -22,19 +22,6 @@ The National Rail UK Ticket Sales Data Pipeline project is designed to simulate 
 - **Data Visualization:** Create interactive dashboards to visualize key metrics and trends in ticket sales data using Looker.
 - **Infrastructure as Code:** Use Terraform to provision and manage cloud infrastructure, ensuring reproducibility and scalability.
 
-### Key Features
-
-- **Automated Data Pipeline:** A fully automated pipeline that runs on a schedule, ensuring that data is consistently up-to-date.
-- **Scalability:** Terraform and cloud-based tools like BigQuery allow for easy scaling as data volume increases.
-- **Modularity:** Each pipeline component (ingestion, transformation, visualization) is decoupled, making modifying or extending the pipeline easy.
-
-### Data Flow
-
-1. **Data Source:** Mock train ticket sales data is generated or provided in Google Sheets.
-2. **Data Ingestion:** Airbyte extracts data from the source and loads it into BigQuery.
-3. **Data Transformation:** dbt transforms the raw data in BigQuery into structured, analytics-ready tables.
-4. **Data Orchestration:** Airflow manages and schedules the pipeline's various tasks, ensuring they run in the correct order.
-5. **Data Visualization:** Looker connects to the transformed data in BigQuery to create dashboards and reports.
 
 
 ## Data Description 
@@ -66,3 +53,11 @@ The architecture of this data pipeline is designed to be modular and scalable, e
 
 
 ![](images/architecture.gif)
+
+### Data Flow
+
+1. **Infrastructure As Code:** Terraform is used to automate the creation of the BigQuery dataset and configure the Airbyte connection, ensuring consistent and repeatable infrastructure setup.
+2. **Data Ingestion:** Airbyte extracts data from the source (Google Sheets) and loads it into BigQuery.
+3. **Data Transformation:** dbt transforms the raw data in BigQuery into structured, analytics-ready tables.
+4. **Data Orchestration:** Airflow manages and schedules the pipeline's various tasks, ensuring they run in the correct order.
+5. **Data Visualization:** Looker connects to the transformed data in BigQuery to create dashboards and reports.
