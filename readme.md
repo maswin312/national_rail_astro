@@ -5,9 +5,13 @@ This project is a data pipeline built to handle and analyze mock train ticket sa
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
+    * [Objectives](#objectives)
 2. [Data Description](#data-description)
 3. [Tools and Technologies](#tools-and-technologies)
 4. [Architecture Diagram](#architecture-diagram)
+    * [Data Flow](#data-flow)
+5. [Setup Instructions](#setup-instructions)
+    * [Prerequisites](#prerequisites)
 
 
 ## Project Overview
@@ -36,7 +40,7 @@ This project leverages powerful tools and technologies to build a robust and sca
 
 - **Airbyte:** An open-source data integration platform that extracts and loads data from data sources into BigQuery. Airbyte handles the data ingestion,
 
-- **Terraform:** Terraform is An Infrastructure as Code (IaC) tool that automates the provisioning and management of cloud resources. It is used to set up and manage the infrastructure, including BigQuery, Airbyte, and Airflow.
+- **Terraform:** Terraform is An Infrastructure as Code (IaC) tool that automates the provisioning and management of cloud resources. It is used to set up and manage the infrastructure.
 
 - **BigQuery:** A fully managed data warehouse provided by Google Cloud. BigQuery stores and analyzes the ingested data, offering scalability and fast query performance.
 
@@ -61,3 +65,19 @@ The architecture of this data pipeline is designed to be modular and scalable, e
 3. **Data Transformation:** dbt transforms the raw data in BigQuery into structured, analytics-ready tables.
 4. **Data Orchestration:** Airflow manages and schedules the pipeline's various tasks, ensuring they run in the correct order.
 5. **Data Visualization:** Looker connects to the transformed data in BigQuery to create dashboards and reports.
+
+## Setup Instructions
+### Prerequisites
+
+Before starting this integration, ensure you have the following:
+
+- **Python 3.10 or later:** If not installed, download and install it from the [official Python website](https://www.python.org/downloads/).
+  
+- **Docker and Docker Compose (Docker Desktop):** Install Docker following the [official documentation](https://docs.docker.com/get-docker/) for your operating system.
+
+- **Airbyte OSS version:** Deploy the open-source version of Airbyte locally by following the [Airbyte installation instructions](https://docs.airbyte.com/deploying-airbyte/).
+
+- **Terraform (Optional):** Terraform can be used to provision and manage Airbyte and BigQuery resources. If you still need to install it, follow the [Terraform installation guide](https://learn.hashicorp.com/tutorials/terraform/install-cli). This step is optional since the UI can create and manage Airbyte and BigQuery resources.
+
+
+- **Google Cloud account with BigQuery:** Ensure you have a Google Cloud account with BigQuery enabled. You'll need to grant the necessary permissions for Airbyte and dbt to access your BigQuery data, with detailed instructions provided in the steps below.
