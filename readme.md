@@ -82,7 +82,7 @@ Before starting this integration, ensure you have the following:
 
 - **Terraform (Optional):** Terraform can be used to provision and manage Airbyte and BigQuery resources. If you still need to install it, follow the [Terraform installation guide](https://learn.hashicorp.com/tutorials/terraform/install-cli). This step is optional since the UI can create and manage Airbyte and BigQuery resources.
 
-- **ASTRO CLI:** Astro CLI is required to manage and deploy your Airflow projects. Follow the [Astro CLI installation guide](https://docs.astronomer.io/astro/install-cli) to get started.
+- **ASTRO CLI:** Astro CLI is required to manage Airflow in this projects. Follow the [Astro CLI installation guide](https://docs.astronomer.io/astro/install-cli) to get started.
 
 - **Google Cloud account with BigQuery:** Ensure you have a Google Cloud account with BigQuery enabled. You'll need to grant the necessary permissions for Airbyte and dbt to access your BigQuery data, with detailed instructions provided in the steps below.
 
