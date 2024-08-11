@@ -12,6 +12,9 @@ This project is a data pipeline built to handle and analyze mock train ticket sa
     * [Data Flow](#data-flow)
 5. [Setup Instructions](#setup-instructions)
     * [Prerequisites](#prerequisites)
+    * [Setup Google Cloud Project](#setup-google-cloud-project)
+    * [Setup The Data Source](#setup-the-data-source)
+    * [Setup Airbyte Connectors, BigQuery Datasets, and GCS Bucket](#setup-airbyte-connectors-bigquery-datasets-and-gcs-bucket)
 
 
 ## Project Overview
@@ -79,5 +82,102 @@ Before starting this integration, ensure you have the following:
 
 - **Terraform (Optional):** Terraform can be used to provision and manage Airbyte and BigQuery resources. If you still need to install it, follow the [Terraform installation guide](https://learn.hashicorp.com/tutorials/terraform/install-cli). This step is optional since the UI can create and manage Airbyte and BigQuery resources.
 
+- **ASTRO CLI:** Astro CLI is required to manage and deploy your Airflow projects. Follow the [Astro CLI installation guide](https://docs.astronomer.io/astro/install-cli) to get started.
 
 - **Google Cloud account with BigQuery:** Ensure you have a Google Cloud account with BigQuery enabled. You'll need to grant the necessary permissions for Airbyte and dbt to access your BigQuery data, with detailed instructions provided in the steps below.
+
+
+### Setup Google Cloud Project
+1. **Create a Google Cloud Project**
+
+    You can skip this step if you already have a Google Cloud project.
+
+    1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
+    2. Click on the "Select a project" dropdown at the top left and select "New Project".
+    3. Name your project and follow the steps to create it.
+
+2. **Create a Service Account and Assign Roles**
+    1. In the Google Cloud Console, navigate to **"IAM & Admin" > "Service accounts"**.
+    2. Click **"Create Service Account"**.
+    3. Name your service account.
+    4. Assign the following roles to the service account:
+        - **BigQuery Data Editor**: The service account can create, update, and delete data within BigQuery datasets.
+        - **BigQuery Job User**: The service account can run BigQuery jobs, such as queries and data loads.
+        - **Storage Admin**: The service account can create, delete, and manage buckets and objects in Google Cloud Storage (GCS).
+
+4. **Generate a JSON Key for the Service Account**
+
+    1. Generate a JSON key to allow the service account to authenticate and access Google Cloud resources.
+
+        - After creating the service account, find it in the **“Service accounts”** list.
+        - Click on the service account name.
+        - Go to the **“Keys”** section.
+        - Click **“Add Key”** and select **JSON**.
+        - The key file will download automatically. Keep it safe and secure.
+### Setup The Data Source
+1. Download the dataset [here](https://mavenanalytics.io/challenges/maven-rail-challenge/08941141-d23f-4cc9-93a3-4c25ed06e1c3) and import the CSV into Google Sheets.
+
+2. Go back to the [Google Cloud Console](https://console.cloud.google.com/).
+    - Choose the Project you created earlier.
+    - Navigate to **API & Services**.
+    - Click **ENABLE APIS AND SERVICES**.
+    - In the search box, search for **Google Sheets**.
+    - Select **Google Sheets API**.
+    - Click **Enable API**.
+    - Click **Manage**.
+    - In the left sidebar, choose **Credentials**.
+    - Copy the email address in the **Service Accounts** section; it should match the service account you created earlier.
+
+3. Share viewer access to the Google Sheets with the email address you just copied. This will allow Airbyte to access your sheets.
+
+
+### Setup Airbyte Connectors, BigQuery Datasets, and GCS Bucket
+To manage the Airbyte connection, BigQuery datasets, and GCS bucket efficiently, we're using Terraform. Here's how you can set this up:
+   
+1. **Go to Terraform directory**:
+    ```bash 
+    cd  terraform
+    ```
+2. **Change Configuration Files**:
+    
+    Inside the Terraform folder you'll find:
+    - `providers.tf`: Defines the cloud provider and configuration for connecting Terraform to Google Cloud and Airbyte.
+    - `main.tf`: Contains the main infrastructure definitions and resource configurations.
+    - `variables.tf`: Declares input variables to customize your Terraform configurations.
+    - `example_terraform.tvars`: Rename it into `terraform.tvars`; it stores variable values used to configure your infrastructure, replacing placeholders in variables.tf.
+
+    Update the credentials in `terraform.tvars` with the details specific to your project:
+
+    - `location`: Specifies the geographic region where resources will be deployed.
+    - `dataset_id`: Name of the BigQuery dataset to be created.
+    - `project_id`: The Google Cloud project name.
+    - `credentials_json_path`: Path to the JSON key file for the Google Cloud service account.
+    - `hmac_key_access_id`: Access ID for the HMAC key used in Google Cloud Storage.
+    - `hmac_key_secret`: Secret associated with the HMAC key for Google Cloud Storage.
+    - `gcs_bucket_name`: Name of the Google Cloud Storage bucket to be created.
+    - `gcs_bucket_path`: Path within the GCS bucket for storing objects.
+    - `workspace_id`: Identifier for the Airbyte workspace. For example your Airbyte url is  http://localhost:8000/workspaces/9243657b-f2f1-4bac-8ac7-b5f762861741/ then the `workspace_id` is `9243657b-f2f1-4bac-8ac7-b5f762861741`.
+    - `spreadsheet_id`: Link of the Google Sheets spreadsheet to be used for data source.
+    - `source_name`: Name of the Airbyte Source to be Created
+    - `destination_name`: Name of the Airbyte Destination to be Created
+    - `connection_name`: Name of the Airbyte Connection to be Created
+
+3. **Run Terraform**:
+    - Make sure you have [Airbyte](http://localhost:8000/) installed and running.
+    - Initialize Terraform
+        ```bash
+        terraform init
+        ```
+    - Review the Terraform Plan
+        ```bash
+        terraform plan
+        ```
+    - Apply the Terraform Config, type **yes** when asked
+        ```bash
+        terraform apply
+        ```
+4. **Verify in Airbyte UI**
+
+   Go to the [Airbyte UI](http://localhost:8000/). Here, you should able to see the `connection`, `source`, and `destination` you just created.
+   
+   ![](images/airbyte_UI.png) 

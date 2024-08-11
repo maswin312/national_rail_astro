@@ -41,7 +41,7 @@ resource "airbyte_source_google_sheets" "googlesheets" {
     names_conversion = false
     spreadsheet_id   = var.spreadsheet_id
   }
-  name          = "Sheets Maven Train TF"
+  name          = var.source_name
   workspace_id  = var.workspace_id
 }
 
@@ -68,13 +68,13 @@ resource "airbyte_destination_bigquery" "bigquery" {
       
     }
   }
-  name         = "BQ maven train TF"
+  name         = var.destination_name
   workspace_id = var.workspace_id
 }
 
 // Connections
 resource "airbyte_connection" "National_Rail_Data" {
-  name           = "National Rail Sheets to BigQuery"
+  name           = var.connection_name
   source_id      = airbyte_source_google_sheets.googlesheets.source_id
   destination_id = airbyte_destination_bigquery.bigquery.destination_id
   configurations = {

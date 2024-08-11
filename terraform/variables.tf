@@ -34,3 +34,12 @@ variable "location" {
   type = string
 }
 
+variable "source_name"{
+ type = string
+}
+variable "destination_name"{
+ type = string
+}
+variable "connection_name"{
+ type = string
+}
