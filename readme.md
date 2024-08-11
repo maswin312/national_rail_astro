@@ -113,7 +113,7 @@ Before starting this integration, ensure you have the following:
         - Click on the service account name.
         - Go to the **“Keys”** section.
         - Click **“Add Key”** and select **JSON**.
-        - The key file will download automatically. Keep it safe and secure.
+        - The key file will download automatically. **Copy** and **Paste** it to `dbt/national_rail` folder.
 ### Setup The Data Source
 1. Download the dataset [here](https://mavenanalytics.io/challenges/maven-rail-challenge/08941141-d23f-4cc9-93a3-4c25ed06e1c3) and import the CSV into Google Sheets.
 
