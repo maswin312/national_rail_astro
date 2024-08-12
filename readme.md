@@ -65,14 +65,14 @@ The architecture of this data pipeline is designed to be modular and scalable, e
 
 1. **Infrastructure As Code:** Terraform is used to automate the creation of the BigQuery dataset and configure the Airbyte connection, ensuring consistent and repeatable infrastructure setup.
 2. **Data Ingestion:** Airbyte extracts data from the source (Google Sheets) and loads it into BigQuery.
-3. **Data Transformation:** dbt transforms the raw data in BigQuery into structured, analytics-ready tables.
+3. **Data Transformation:** DBT transforms the raw data in BigQuery into structured, analytics-ready tables.
 4. **Data Orchestration:** Airflow manages and schedules the pipeline's various tasks, ensuring they run in the correct order.
 5. **Data Visualization:** Looker connects to the transformed data in BigQuery to create dashboards and reports.
 
 ## Setup Instructions
 ### Prerequisites
 
-Before starting this integration, ensure you have the following:
+Before starting, ensure you have the following:
 
 - **Python 3.10 or later:** If not installed, download and install it from the [official Python website](https://www.python.org/downloads/).
   
@@ -80,7 +80,9 @@ Before starting this integration, ensure you have the following:
 
 - **Airbyte OSS version:** Deploy the open-source version of Airbyte locally by following the [Airbyte installation instructions](https://docs.airbyte.com/deploying-airbyte/).
 
-- **Terraform (Optional):** Terraform can be used to provision and manage Airbyte and BigQuery resources. If you still need to install it, follow the [Terraform installation guide](https://learn.hashicorp.com/tutorials/terraform/install-cli). This step is optional since the UI can create and manage Airbyte and BigQuery resources.
+- **DBT Core:** Install DBT Core to manage and execute your data transformations. Follow the [DBT Core installation guide](https://docs.getdbt.com/guides/manual-install?step=1) to set it up.
+
+- **Terraform (Optional):** Terraform can be used to provision and manage Airbyte and BigQuery resources. If you still need to install it, follow the [Terraform installation guide](https://docs.airbyte.com/using-airbyte/getting-started/oss-quickstart). This step is optional since the UI can create and manage Airbyte and BigQuery resources.
 
 - **ASTRO CLI:** Astro CLI is required to manage Airflow in this projects. Follow the [Astro CLI installation guide](https://docs.astronomer.io/astro/install-cli) to get started.
 
