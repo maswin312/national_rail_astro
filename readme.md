@@ -15,6 +15,7 @@ This project is a data pipeline built to handle and analyze mock train ticket sa
     * [Setup Google Cloud Project](#setup-google-cloud-project)
     * [Setup The Data Source](#setup-the-data-source)
     * [Setup Airbyte Connectors, BigQuery Datasets, and GCS Bucket](#setup-airbyte-connectors-bigquery-datasets-and-gcs-bucket)
+    * [Setup DBT Project](#setup-dbt-project)
 
 
 ## Project Overview
@@ -185,7 +186,7 @@ To manage the Airbyte connection, BigQuery datasets, and GCS bucket efficiently,
    ![](images/airbyte_UI.png) 
 
 
-### Setup DBT
+### Setup DBT Project
 DBT (Data Build Tool) allows you to transform data by creating, documenting, and running SQL workflows. To use DBT in this project, you must configure the connection details to BigQuery
 
 1. **Go to DBT Project directory**:
