@@ -196,7 +196,7 @@ DBT (Data Build Tool) allows you to transform data by creating, documenting, and
     ```
 2. **Update profiles.yml**:
 
-    Inside the folder, you'll find `example_profiles.yml`. First, rename it to p`rofiles.yml`. After that, update the following configurations based on your Google Cloud project:
+    Inside the folder, you'll find `example_profiles.yml`. First, rename it to `profiles.yml`. After that, update the following configurations based on your Google Cloud project:
 
     - `dataset`: The BigQuery dataset name you created with Terraform in the previous step.
     - `keyfile`: The path to your service account key.
