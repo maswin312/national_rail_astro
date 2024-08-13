@@ -178,8 +178,37 @@ To manage the Airbyte connection, BigQuery datasets, and GCS bucket efficiently,
         ```bash
         terraform apply
         ```
-4. **Verify in Airbyte UI**
+4. **Verify in Airbyte UI**:
 
    Go to the [Airbyte UI](http://localhost:8000/). Here, you should able to see the `connection`, `source`, and `destination` you just created.
    
    ![](images/airbyte_UI.png) 
+
+
+### Setup DBT
+DBT (Data Build Tool) allows you to transform data by creating, documenting, and running SQL workflows. To use DBT in this project, you must configure the connection details to BigQuery
+
+1. **Go to DBT Project directory**:
+    
+    ```bash
+    cd ../../dbt/national_rail
+    ```
+2. **Update profiles.yml**:
+
+    Inside the folder, you'll find `example_profiles.yml`. First, rename it to p`rofiles.yml`. After that, update the following configurations based on your Google Cloud project:
+
+    - `dataset`: The BigQuery dataset name you created with Terraform in the previous step.
+    - `keyfile`: The path to your service account key.
+    - `location`: Specifies the geographic region where the dataset will be deployed.
+    - `project`: Your Google Cloud project ID.
+
+3. **Test Connection**:
+    
+    ```bash
+    dbt debug
+    ```
+    If the config is correct you'll see something like this :
+    ```
+    07:47:40  Connection test: [OK connection ok]
+    07:47:40  All checks passed!
+    ```
