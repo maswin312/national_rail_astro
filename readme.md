@@ -1,4 +1,4 @@
-# National Rail UK Ticket Sales Data Pipeline
+# Ticket Sales Data Pipeline using Airbyte, BigQuery, DBT, and Looker
 
 This project is a data pipeline built to handle and analyze mock train ticket sales data for National Rail in the UK. The pipeline processes data from January to April 2024, detailing various aspects such as ticket types, journey dates & times, departure & arrival stations, ticket prices, and more. This README provides an overview of the project, the tools used, and step-by-step instructions on reproducing the pipeline.
 
